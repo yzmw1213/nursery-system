@@ -35,7 +35,7 @@ CREATE TABLE user_db.users
     name varchar(255) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '名前',
     email varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'メールアドレス',
     firebase_uid varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'uid',
-    `authority` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '権限',
+    authority varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '権限',
     delete_flag tinyint(1) NOT NULL DEFAULT '0' COMMENT '削除フラグ',
     create_user_id int(255) NOT NULL DEFAULT '0' COMMENT '作成ユーザーID',
     update_user_id int(255) NOT NULL DEFAULT '0' COMMENT '更新ユーザーID',
