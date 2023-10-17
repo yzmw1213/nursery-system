@@ -1,14 +1,18 @@
 package main
 
 import (
-	"github.com/yzmw1213/nursery-system/route"
 	"os"
 
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
+
+	"github.com/yzmw1213/nursery-system/dao"
+	"github.com/yzmw1213/nursery-system/route"
 )
 
 func main() {
+	dao.InitMysql()
+
 	router := gin.Default()
 	port := os.Getenv("PORT")
 	if port == "" {
