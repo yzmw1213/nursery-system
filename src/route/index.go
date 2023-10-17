@@ -2,7 +2,7 @@ package route
 
 import (
 	"net/http"
-	
+
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 
