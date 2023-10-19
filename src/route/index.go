@@ -1,25 +1,25 @@
 package route
 
 import (
-	"net/http"
-
 	"github.com/gin-gonic/gin"
-	log "github.com/sirupsen/logrus"
+	"github.com/yzmw1213/nursery-system/conf"
+	"github.com/yzmw1213/nursery-system/middleware"
 
-	"github.com/yzmw1213/nursery-system/util"
+	"github.com/yzmw1213/nursery-system/handle"
 )
 
+// @tag.name nursery-facility
+// @tag.description 保育施設
+
 func IndexRoute(router *gin.Engine) {
-	router.GET("/", func(c *gin.Context) {
-		log.Infof("IndexHandler start")
-		res := &util.OutputBasic{
-			Code:    http.StatusOK,
-			Result:  "OK",
-			Message: "OK",
-		}
-		c.JSON(
-			res.GetCode(),
-			res.GetResult(),
-		)
-	} )
+	indexHandler := handle.NewIndexHandler()
+	nurseryFacilityHandler := handle.NewNurseryFacilityHandler()
+
+	customClaimSystemAdmin := []string{conf.CustomUserClaimAdmin}
+
+	router.GET("/", indexHandler.IndexHandle)
+
+	router.GET("/nursery-facility", middleware.AuthAPI(nurseryFacilityHandler.GetHandle, customClaimSystemAdmin))
+	router.POST("/nursery-facility", middleware.AuthAPI(nurseryFacilityHandler.SaveHandle, customClaimSystemAdmin))
+	router.DELETE("/nursery-facility", middleware.AuthAPI(nurseryFacilityHandler.DeleteHandle, customClaimSystemAdmin))
 }
