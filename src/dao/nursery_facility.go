@@ -163,7 +163,7 @@ INSERT INTO nursery_db.nursery_facilitys
 (
 	name,
 	update_user_id
-) VALUES (?,?,?)                
+) VALUES (?,?)                
 `
 	params := []interface{}{
 		in.Name,
